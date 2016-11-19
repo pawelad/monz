@@ -1,0 +1,24 @@
+language: python
+
+matrix:
+    include:
+        - os: linux
+          python: 2.7
+          env: TOXENV=py27
+        - os: linux
+          python: 3.4
+          env: TOXENV=py34
+        - os: linux
+          python: 3.5
+          env: TOXENV=py35
+
+install:
+  - pip install -r requirements/dev.txt
+
+script:
+  - tox
+  - coverage run --source monz -m py.test
+  - coverage report -m
+
+after_success:
+  - coveralls
