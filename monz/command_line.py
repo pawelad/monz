@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, division, print_function
+from __future__ import unicode_literals
 
 import click
 import dateutil.parser
@@ -15,8 +15,8 @@ from monz.utils import monzo_amount_to_dec
 @click.pass_context
 def cli(ctx, access_token):
     """
-    Simple command line interface for quickly accessing your Monzo account info,
-    current balance, latest transactions, etc.
+    Simple command line interface for quickly accessing your Monzo account
+    info, current balance, latest transactions, etc.
 
     To use it you need to save your Monzo access token as 'MONZO_ACCESS_TOKEN'
     environment variable (export MOZNO_ACCESS_TOKEN='...') or pass it

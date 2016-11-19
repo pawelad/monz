@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, division, print_function
+from __future__ import unicode_literals
 
 import io
 import os
@@ -48,8 +48,9 @@ setup(
     author_email='pawel.ad@gmail.com',
     maintainer='Paweł Adamczak',
     maintainer_email='pawel.ad@gmail.com',
-    description='Simple command line interface for quickly accessing your Monzo'
-                ' account info, current balance, latest transactions, etc.',
+    description='Simple command line interface for quickly accessing your'
+                'Monzo account info, current balance, latest transactions, '
+                'etc.',
     long_description=description,
     packages=find_packages(),
     include_package_data=True,
