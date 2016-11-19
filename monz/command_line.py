@@ -4,12 +4,13 @@ from __future__ import absolute_import, division, print_function
 import click
 import dateutil.parser
 from babel.numbers import format_currency
+from click_default_group import DefaultGroup
 from pymonzo import MonzoAPI
 
 from monz.utils import monzo_str_to_dec
 
 
-@click.group()
+@click.group(cls=DefaultGroup, default='balance', default_if_no_args=True)
 @click.option('--access-token', '-t', type=str, help="Monzo API access token.")
 @click.pass_context
 def cli(ctx, access_token):
