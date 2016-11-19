@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, division, print_function
+
+import os
+import sys
+
+try:
+    # Installed system wide
+    from monz.command_line import cli
+except ImportError:
+    # Try to look for the source code locally
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+    from monz.command_line import cli
+
+
+if __name__ == '__main__':
+    cli()

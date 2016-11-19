@@ -1,0 +1,2 @@
+click>=6.6
+pymonzo>=0.1.1
