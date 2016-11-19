@@ -23,7 +23,7 @@ def cli(ctx, access_token):
     explicitly with each command.
     """
     try:
-        ctx.obj['monzo_api'] = MonzoAPI(access_token=access_token)
+        ctx.obj = MonzoAPI(access_token=access_token)
     except ValueError as e:
         raise click.ClickException(e)
 
@@ -32,7 +32,7 @@ def cli(ctx, access_token):
 @click.pass_context
 def accounts(ctx):
     """Show connected Monzo accounts"""
-    monzo_accounts = ctx.obj['monzo_api'].accounts()
+    monzo_accounts = ctx.obj.accounts()
 
     for n, account in enumerate(monzo_accounts, start=1):
         click.secho(
@@ -55,7 +55,7 @@ def accounts(ctx):
 def balance(ctx, account_id):
     """Show Monzo account balance"""
     try:
-        monzo_balance = ctx.obj['monzo_api'].balance(account_id=account_id)
+        monzo_balance = ctx.obj.balance(account_id=account_id)
     except ValueError as e:
         raise click.ClickException(e)
 
@@ -81,7 +81,7 @@ def balance(ctx, account_id):
 def transactions(ctx, account_id, num):
     """Show Monzo account transactions"""
     try:
-        monzo_transactions = ctx.obj['monzo_api'].transactions(
+        monzo_transactions = ctx.obj.transactions(
             account_id=account_id,
             reverse=True,
             limit=num,
@@ -91,7 +91,7 @@ def transactions(ctx, account_id, num):
 
     for n, transaction in enumerate(monzo_transactions, start=1):
         # We need a separate request for better merchant info
-        trans = ctx.obj['monzo_api'].transaction(
+        trans = ctx.obj.transaction(
             transaction_id=transaction['id'],
             expand_merchant=True,
         )
@@ -124,4 +124,4 @@ def transactions(ctx, account_id, num):
 
 
 if __name__ == '__main__':
-    cli(obj={})
+    cli()
