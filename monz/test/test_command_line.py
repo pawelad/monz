@@ -24,6 +24,8 @@ def test_no_access_token(monkeypatch, runner):
 
     result = runner.invoke(cli)
 
+    print(result.exception)
+
     assert isinstance(result.exception, SystemExit)
     assert result.exit_code == 1
 

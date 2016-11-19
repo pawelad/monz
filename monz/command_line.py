@@ -28,7 +28,7 @@ def cli(ctx, access_token):
     try:
         ctx.obj = MonzoAPI(access_token=access_token)
     except ValueError as e:
-        raise click.ClickException(e)
+        raise click.ClickException(str(e))
 
 
 @cli.command()
@@ -59,7 +59,7 @@ def balance(ctx, account_id):
     try:
         monzo_balance = ctx.obj.balance(account_id=account_id)
     except ValueError as e:
-        raise click.ClickException(e)
+        raise click.ClickException(str(e))
 
     amount = monzo_amount_to_dec(monzo_balance['balance'])
     local_amount = format_currency(amount, monzo_balance['currency'])
@@ -89,7 +89,7 @@ def transactions(ctx, account_id, num):
             limit=num,
         )
     except ValueError as e:
-        raise click.ClickException(e)
+        raise click.ClickException(str(e))
 
     for n, transaction in enumerate(monzo_transactions, start=1):
         # We need a separate request for better merchant info
