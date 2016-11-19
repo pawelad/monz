@@ -24,8 +24,6 @@ def test_no_access_token(monkeypatch, runner):
 
     result = runner.invoke(cli)
 
-    print(result.exception)
-
     assert isinstance(result.exception, SystemExit)
     assert result.exit_code == 1
 
@@ -74,13 +72,12 @@ def test_balance(runner):
 
 def test_transactions(runner):
     """Test invoking the script 'transactions' subcommand"""
-    for n in [1, 5, 10, 50]:
+    for n in [1, 5, 10]:
         result = runner.invoke(
             cli, args=['transactions', '-n', str(n)],
         )
 
         assert result.exit_code == 0
         assert result.output
-        # There can be less then n items, so let's just make sure
-        # that there are no more then n displayed
-        assert result.output.count('\n') <= (n*4 - 1)
+        # Each item takes 3 lines plus a blank one, no new line at the end
+        assert result.output.count('\n') == (n*4 - 1)
