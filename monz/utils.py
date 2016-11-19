@@ -1,7 +1,7 @@
 from decimal import Decimal
 
 
-def monzo_str_to_dec(amount):
+def monzo_amount_to_dec(amount):
     """
     Monzo API returns monetary amount as an integer without the delimiter
     before the subunit, so 12345 is in fact 123.45

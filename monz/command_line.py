@@ -7,7 +7,7 @@ from babel.numbers import format_currency
 from click_default_group import DefaultGroup
 from pymonzo import MonzoAPI
 
-from monz.utils import monzo_str_to_dec
+from monz.utils import monzo_amount_to_dec
 
 
 @click.group(cls=DefaultGroup, default='balance', default_if_no_args=True)
@@ -59,7 +59,7 @@ def balance(ctx, account_id):
     except ValueError as e:
         raise click.ClickException(e)
 
-    amount = monzo_str_to_dec(monzo_balance['balance'])
+    amount = monzo_amount_to_dec(monzo_balance['balance'])
     local_amount = format_currency(amount, monzo_balance['currency'])
 
     local_spent_today = format_currency(
@@ -97,7 +97,7 @@ def transactions(ctx, account_id, num):
         )
         merchant = trans['merchant']
 
-        amount = monzo_str_to_dec(trans['local_amount'])
+        amount = monzo_amount_to_dec(trans['local_amount'])
         local_amount = format_currency(amount, trans['local_currency'])
 
         click.secho(
