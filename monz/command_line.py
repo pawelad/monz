@@ -18,8 +18,8 @@ def cli(ctx, access_token):
     current balance, latest transactions, etc.
 
     To use it you need to save your Monzo access token as 'MONZO_ACCESS_TOKEN'
-    environment variable - i.e. export MOZNO_ACCESS_TOKEN='...' - or pass it
-    explicitly with eah command.
+    environment variable (export MOZNO_ACCESS_TOKEN='...') or pass it
+    explicitly with each command.
     """
     try:
         ctx.obj['monzo_api'] = MonzoAPI(access_token=access_token)
