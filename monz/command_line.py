@@ -10,6 +10,9 @@ from pymonzo import MonzoAPI
 from monz.utils import monzo_amount_to_dec
 
 
+click.disable_unicode_literals_warning = True
+
+
 @click.group(cls=DefaultGroup, default='balance', default_if_no_args=True)
 @click.option('--access-token', '-t', type=str, help="Monzo API access token.")
 @click.pass_context
