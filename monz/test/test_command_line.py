@@ -5,9 +5,9 @@ from uuid import uuid4
 
 import pytest
 from click.testing import CliRunner
+from pymonzo.monzo_api import MONZO_ACCESS_TOKEN
 
 from monz.command_line import cli
-from pymonzo.monzo_api import MONZO_ACCESS_TOKEN
 
 
 # Module fixtures
@@ -47,6 +47,7 @@ def test_accounts(runner):
     assert result.exit_code == 0
     assert result.output
     assert result.output.startswith('Account #')
+    assert result.output.count('\n') >= 3
 
 
 def test_balance(runner):
@@ -66,15 +67,18 @@ def test_balance(runner):
 
     assert result.exit_code == result_no_args.exit_code
     assert result.output == result_no_args.output
+    assert result.output.count('\n') == 2
 
 
 def test_transactions(runner):
     """Test invoking the script 'transactions' subcommand"""
-    for n in [1, 5]:
+    for n in [1, 5, 10, 50]:
         result = runner.invoke(
             cli, args=['transactions', '-n', str(n)],
         )
 
         assert result.exit_code == 0
         assert result.output
-        assert result.output.count('\n') == (n*4 - 1)
+        # There can be less then n items, so let's just make sure
+        # that there are no more then n displayed
+        assert result.output.count('\n') <= (n*4 - 1)

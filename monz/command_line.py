@@ -39,7 +39,6 @@ def accounts(ctx):
             "Account #{}, {}".format(n, account['description']),
             fg='green',
         )
-
         click.echo('{0:<12} {1}'.format('ID:', account['id']))
         click.echo('{0:<12} {1:%b %-d, %Y %-I:%M %p}'.format(
             'Created:', dateutil.parser.parse(account['created']))
@@ -97,19 +96,23 @@ def transactions(ctx, account_id, num):
         )
         merchant = trans['merchant']
 
+        if merchant:
+            description = '{0} ({1})'.format(
+                merchant['name'],
+                merchant['address']['city'].capitalize(),
+            )
+        else:
+            description = trans['description'].split('  ')[0].capitalize()
+
+        category = trans['category'].replace('_', ' ').capitalize()
+
         amount = monzo_amount_to_dec(trans['local_amount'])
         local_amount = format_currency(amount, trans['local_currency'])
 
         click.secho(
-            '{0} at {1} ({2})'.format(
-                local_amount,
-                merchant['name'],
-                merchant['address']['city'],
-            ),
+            '{0} | {1}'.format(local_amount, description),
             fg='yellow', bold=True,
         )
-
-        category = merchant['category'].replace('_', ' ').capitalize()
         click.echo('{0:<12} {1}'.format('Category:', category))
 
         if transaction['notes']:
