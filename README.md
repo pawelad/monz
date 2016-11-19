@@ -9,8 +9,13 @@
 Simple command line interface for quickly accessing your Monzo account info,
 current balance, latest transactions, etc.
 
-It currently suffers from the same issue that the underlying [pymonzo][pymonzo]
-suffers - short lifespan of access tokens.
+I don't know exactly where will this project go next so all feature requests
+and suggestions are more then welcome.
+
+Worth mentioning - it currently suffers from the same issue that the underlying
+[pymonzo][pymonzo] package suffers, which is the short lifespan of access
+tokens. It makes using it daily a bit of a hassle as you need to change them
+every couple of hours, but I plan to fix in near future.
 
 ## Installation
 From PyPI:
@@ -19,7 +24,7 @@ $ pip install monzo
 ```
 
 ## Usage
-To use the library you have to provide it with you Monzo
+To use the script you have to provide it with you Monzo
 [access token][monzo developer playground]. You can either do that by exporting
 it as an environment variable (`$ export MONZO_ACCESS_TOKEN='...'`) or by
 passing it explicitly with each command.
@@ -46,7 +51,38 @@ Commands:
 ```
 
 ## Examples
+You can view your linked accounts:
+```shell
+$ monz accounts    
+Account #1, Bender Rodríguez
+ID:          acc_2716057
+Created:     Dec 31, 2999 11:59 PM
+```
+If you have only one then it will become the default one, but if you have more
+then you have to pass it's ID explicitly to the rest of the commands.
 
+You can view your current balance, which is also the default subcommand:
+```shell
+$ monz       
+Balance:     £17.29
+Spent today: £0.00
+
+$ monz balance
+Balance:     £17.29
+Spent today: £0.00
+```
+
+Lastly, you can see your latest transactions:
+```shell
+$ monz transactions -n 2
+-£50.00 at Robot Arms Apartments (New New York)
+Category:    Bills
+Date:        Nov 18, 3016 11:09 PM
+
+-£50.00 at Fronty's Meat Market (New New York)
+Category:    Grocieries
+Date:        Nov 17, 3016 8:31 AM
+```
 
 ## Tests
 Package was tested with the help of `py.test` and `tox` on Python 2.7, 3.4
@@ -79,4 +115,5 @@ Released under [MIT License][license].
 [monzo]: https://monzo.com/
 [pawelad]: https://github.com/pawelad
 [pypi]: https://pypi.python.org/pypi/monz
+[pymonzo]: https://github.com/pawelad/pymonzo
 [travis]: https://travis-ci.org/pawelad/monz
