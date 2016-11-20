@@ -48,7 +48,7 @@ setup(
     author_email='pawel.ad@gmail.com',
     maintainer='Paweł Adamczak',
     maintainer_email='pawel.ad@gmail.com',
-    description='Simple command line interface for quickly accessing your'
+    description='Simple command line interface for quickly accessing your '
                 'Monzo account info, current balance, latest transactions, '
                 'etc.',
     long_description=description,
