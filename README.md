@@ -14,8 +14,8 @@ and suggestions are more then welcome.
 
 Worth mentioning - it currently suffers from the same issue that the underlying
 [pymonzo][pymonzo] package suffers, which is the short lifespan of access
-tokens. It makes using it daily a bit of a hassle as you need to change them
-every couple of hours, but I plan to fix in near future.
+tokens. It makes using it daily a bit of a hassle as you need to change it
+every couple of hours, but I plan to fix in the near future.
 
 ## Installation
 From PyPI:
