@@ -6,11 +6,8 @@
 [![Build status](https://img.shields.io/travis/pawelad/monz.svg)][travis]
 [![Test coverage](https://img.shields.io/coveralls/pawelad/monz.svg)][coveralls]
 
-Simple command line interface for quickly accessing your Monzo account info,
-current balance, latest transactions, etc.
-
-I don't know exactly where will this project go next so all feature requests
-and suggestions are more then welcome.
+Simple (and awesome) command line interface for quickly accessing your 
+(equally awesome) Monzo account info, current balance, latest transactions, etc.
 
 Worth mentioning - it currently suffers from the same issue that the underlying
 [pymonzo][pymonzo] package suffers, which is the short lifespan of access
@@ -60,15 +57,15 @@ Created:     Dec 31, 2999 11:59 PM
 ```
 
 If you have only one then it will become the default one, but if you have more
-then you have to pass it's ID explicitly to the rest of the commands.
+then you have to pass its ID explicitly to other subcommands.
 
 You can view your current balance, which is also the default subcommand:
 ```
-$ monz       
+$ monz balance
 Balance:     £17.29
 Spent today: £0.00
 
-$ monz balance
+$ monz       
 Balance:     £17.29
 Spent today: £0.00
 ```
@@ -76,11 +73,11 @@ Spent today: £0.00
 Lastly, you can see your latest transactions:
 ```
 $ monz transactions -n 2
--£50.00 at Robot Arms Apartments (New New York)
+-£50.00 | Robot Arms Apartments (New New York)
 Category:    Bills
 Date:        Nov 18, 3016 11:09 PM
 
--£50.00 at Fronty's Meat Market (New New York)
+-£9.20 | Fronty's Meat Market (New New York)
 Category:    Grocieries
 Date:        Nov 17, 3016 8:31 AM
 ```
