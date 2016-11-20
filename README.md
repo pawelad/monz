@@ -19,8 +19,8 @@ every couple of hours, but I plan to fix in the near future.
 
 ## Installation
 From PyPI:
-```shell
-$ pip install monzo
+```
+$ pip install monz
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ To use the script you have to provide it with you Monzo
 it as an environment variable (`$ export MONZO_ACCESS_TOKEN='...'`) or by
 passing it explicitly with each command.
 
-```shell
+```
 $ monz --help 
 Usage: monz [OPTIONS] COMMAND [ARGS]...
 
@@ -52,17 +52,18 @@ Commands:
 
 ## Examples
 You can view your linked accounts:
-```shell
+```
 $ monz accounts    
 Account #1, Bender Rodríguez
 ID:          acc_2716057
 Created:     Dec 31, 2999 11:59 PM
 ```
+
 If you have only one then it will become the default one, but if you have more
 then you have to pass it's ID explicitly to the rest of the commands.
 
 You can view your current balance, which is also the default subcommand:
-```shell
+```
 $ monz       
 Balance:     £17.29
 Spent today: £0.00
@@ -73,7 +74,7 @@ Spent today: £0.00
 ```
 
 Lastly, you can see your latest transactions:
-```shell
+```
 $ monz transactions -n 2
 -£50.00 at Robot Arms Apartments (New New York)
 Category:    Bills
