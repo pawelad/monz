@@ -5,7 +5,6 @@ from uuid import uuid4
 
 import pytest
 from click.testing import CliRunner
-from pymonzo.monzo_api import MONZO_ACCESS_TOKEN
 
 from monz.command_line import cli
 
@@ -18,21 +17,11 @@ def runner():
 
 
 # Tests
-def test_no_access_token(monkeypatch, runner):
-    """Test invoking the script without the access token"""
-    monkeypatch.delenv(MONZO_ACCESS_TOKEN, raising=False)
-
-    result = runner.invoke(cli)
-
-    assert isinstance(result.exception, SystemExit)
-    assert result.exit_code == 1
-
-
-def test_incorrect_access_token(monkeypatch, runner):
+def test_incorrect_access_token(runner):
     """Test invoking the script with incorrect access token"""
-    monkeypatch.setenv(MONZO_ACCESS_TOKEN, str(uuid4()))
-
-    result = runner.invoke(cli)
+    result = runner.invoke(
+        cli, args=['--access-token', str(uuid4()), 'balance']
+    )
 
     assert isinstance(result.exception, SystemExit)
     assert result.exit_code == 1
