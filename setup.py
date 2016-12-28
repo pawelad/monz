@@ -49,7 +49,7 @@ setup(
     maintainer='Paweł Adamczak',
     maintainer_email='pawel.ad@gmail.com',
     description='Simple (and awesome) command line interface for quickly '
-                'accessing your(equally awesome) Monzo account info, current '
+                'accessing your (equally awesome) Monzo account info, current '
                 'balance, latest transactions, etc.',
     long_description=description,
     packages=find_packages(),
@@ -78,6 +78,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Utilities',
     ],
 )
