@@ -1,5 +1,5 @@
 Babel>=2.3.4
 click>=6.6
 click-default-group>=1.2
-pymonzo>=0.1.1
+pymonzo>=0.2.0
 python-dateutil>=2.6.0
