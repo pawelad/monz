@@ -49,8 +49,8 @@ setup(
     maintainer='Paweł Adamczak',
     maintainer_email='pawel.ad@gmail.com',
     description='Simple (and awesome) command line interface for quickly '
-                'accessing your (equally awesome) Monzo account info, current '
-                'balance, latest transactions, etc.',
+                'accessing your (equally awesome) Monzo account info, its '
+                'current balance, latest transactions, etc.',
     long_description=description,
     packages=find_packages(),
     include_package_data=True,
@@ -59,8 +59,7 @@ setup(
         'Babel>=2.3.4',
         'click>=6.6',
         'click-default-group>=1.2',
-        'pymonzo>=0.1.1',
-        'python-dateutil>=2.6.0',
+        'pymonzo>=0.2.1',
     ],
     extras_require={
         'testing': ['pytest'],
