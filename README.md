@@ -1,18 +1,16 @@
 # Monz
+[![Build status](https://img.shields.io/travis/pawelad/monz.svg)][travis]
+[![Test coverage](https://img.shields.io/coveralls/pawelad/monz.svg)][coveralls]
 [![PyPI version](https://img.shields.io/pypi/v/monz.svg)][pypi]
 [![Python versions](https://img.shields.io/pypi/pyversions/monz.svg)][pypi]
 [![License](https://img.shields.io/github/license/pawelad/monz.svg)][license]
 
-[![Build status](https://img.shields.io/travis/pawelad/monz.svg)][travis]
-[![Test coverage](https://img.shields.io/coveralls/pawelad/monz.svg)][coveralls]
+Simple (and awesome) command line interface for quickly accessing your
+(equally awesome) Monzo account info, its current balance, latest transactions,
+etc.
 
-Simple (and awesome) command line interface for quickly accessing your 
-(equally awesome) Monzo account info, current balance, latest transactions, etc.
-
-Worth mentioning - it currently suffers from the same issue that the underlying
-[pymonzo][pymonzo] package suffers, which is the short lifespan of access
-tokens. It makes using it daily a bit of a hassle as you need to change it
-every couple of hours, but I plan to fix in the near future.
+It uses [pymonzo][pymonzo] and its authentication system in the background so
+you should to read the [auth section][pymonzo auth section] there first.
 
 ## Installation
 From PyPI:
@@ -21,11 +19,10 @@ $ pip install monz
 ```
 
 ## Usage
-To use the script you have to provide it with you Monzo
-[access token][monzo developer playground]. You can either do that by exporting
-it as an environment variable (`$ export MONZO_ACCESS_TOKEN='...'`) or by
-passing it explicitly with each command.
+First, you need to authenticate either via an
+[access token][pymonzo access token] or [OAuth 2][pymonzo oauth2].
 
+Everything else should be pretty straightforward:
 ```
 $ monz --help 
 Usage: monz [OPTIONS] COMMAND [ARGS]...
@@ -33,9 +30,7 @@ Usage: monz [OPTIONS] COMMAND [ARGS]...
   Simple command line interface for quickly accessing your Monzo account
   info, current balance, latest transactions, etc.
 
-  To use it you need to save your Monzo access token as 'MONZO_ACCESS_TOKEN'
-  environment variable (export MOZNO_ACCESS_TOKEN='...') or pass it
-  explicitly with each command.
+  See https://github.com/pawelad/monz for more info.
 
 Options:
   -t, --access-token TEXT  Monzo API access token.
@@ -83,12 +78,15 @@ Date:        Nov 17, 3016 8:31 AM
 ```
 
 ## Tests
-Package was tested with the help of `py.test` and `tox` on Python 2.7, 3.4
-and 3.5 (see `tox.ini`).
+Package was tested with the help of `py.test` and `tox` on Python 2.7, 3.4, 3.5
+and 3.6 (see `tox.ini`).
+
+Code coverage is available at [Coveralls][coveralls].
 
 To run tests yourself you need to set environment variables with access token
 before running `tox` inside the repository:
 ```shell
+$ pip install requirements/dev.txt
 $ export MONZO_ACCESS_TOKEN='...'
 $ tox
 ```
@@ -109,9 +107,12 @@ Released under [MIT License][license].
 [github add issue]: https://github.com/pawelad/monz/issues/new
 [github]: https://github.com/pawelad/monz
 [license]: https://github.com/pawelad/monz/blob/master/LICENSE
-[monzo developer playground]: https://developers.getmondo.co.uk/api/playground
 [monzo]: https://monzo.com/
+[monzo api playground]: https://developers.getmondo.co.uk/api/playground
 [pawelad]: https://github.com/pawelad
-[pypi]: https://pypi.python.org/pypi/monz
 [pymonzo]: https://github.com/pawelad/pymonzo
+[pymonzo access token]: https://github.com/pawelad/pymonzo#access-token
+[pymonzo auth section]: https://github.com/pawelad/pymonzo#authentication
+[pymonzo oauth2]: https://github.com/pawelad/pymonzo#oauth-2
+[pypi]: https://pypi.python.org/pypi/monz
 [travis]: https://travis-ci.org/pawelad/monz
