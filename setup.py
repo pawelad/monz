@@ -59,7 +59,7 @@ setup(
         'Babel>=2.3.4',
         'click>=6.6',
         'click-default-group>=1.2',
-        'pymonzo>=0.2.1',
+        'pymonzo>=0.2.2',
     ],
     extras_require={
         'testing': ['pytest'],
