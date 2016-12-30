@@ -37,12 +37,34 @@ Options:
   --help                   Show this message and exit.
 
 Commands:
+  info*         Show your Monzo basic info
   accounts      Show connected Monzo accounts
   balance       Show Monzo account balance
   transactions  Show Monzo account transactions
 ```
 
 ## Examples
+The default subcommand is `info` which shows your account balance and its
+latest transaction:
+```
+$ monz  
+Balance:     £17.29
+Spent today: £0.00
+
+-£50.00 | Robot Arms Apartments (New New York)
+Category:    Bills
+Date:        Nov 18, 3016 11:09 PM
+
+$ monz info  
+Balance:     £17.29
+Spent today: £0.00
+
+-£50.00 | Robot Arms Apartments (New New York)
+Category:    Bills
+Date:        Nov 18, 3016 11:09 PM
+
+```
+
 You can view your linked accounts:
 ```
 $ monz accounts    
@@ -54,13 +76,9 @@ Created:     Dec 31, 2999 11:59 PM
 If you have only one then it will become the default one, but if you have more
 then you have to pass its ID explicitly to other subcommands.
 
-You can view your current balance, which is also the default subcommand:
+You can also view your current balance:
 ```
 $ monz balance
-Balance:     £17.29
-Spent today: £0.00
-
-$ monz       
 Balance:     £17.29
 Spent today: £0.00
 ```
