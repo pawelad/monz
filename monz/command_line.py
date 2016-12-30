@@ -14,7 +14,7 @@ from monz.utils import monzo_amount_to_dec
 click.disable_unicode_literals_warning = True
 
 
-@click.group(cls=DefaultGroup, default='balance', default_if_no_args=True)
+@click.group(cls=DefaultGroup, default='info', default_if_no_args=True)
 @click.option('--access-token', '-t', type=str, help="Monzo API access token.")
 @click.pass_context
 def cli(ctx, access_token):
@@ -28,6 +28,19 @@ def cli(ctx, access_token):
         ctx.obj = MonzoAPI(access_token=access_token)
     except (ValueError, PyMonzoException) as e:
         raise click.ClickException(str(e))
+
+
+@cli.command()
+@click.pass_context
+def info(ctx):
+    """Show your Monzo basic info"""
+    # Show account balance
+    ctx.invoke(balance)
+
+    click.echo()
+
+    # and it's latest transaction
+    ctx.invoke(transactions, num=1)
 
 
 @cli.command()

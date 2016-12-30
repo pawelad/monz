@@ -20,11 +20,32 @@ def runner():
 def test_incorrect_access_token(runner):
     """Test invoking the script with incorrect access token"""
     result = runner.invoke(
-        cli, args=['--access-token', str(uuid4()), 'balance']
+        cli, args=['--access-token', str(uuid4()), 'info']
     )
 
     assert isinstance(result.exception, SystemExit)
     assert result.exit_code == 1
+
+
+def test_info(runner):
+    """
+    Test invoking the script 'info' subcommand, which should also be the
+    default subcomand
+    """
+    result = runner.invoke(
+        cli, args=['info'],
+    )
+
+    assert result.exit_code == 0
+    assert result.output
+    assert result.output.startswith('Balance: ')
+    assert result.output.count('\n') >= 6
+
+    # Running the script with no arguments should have the same effect
+    result_no_args = runner.invoke(cli)
+
+    assert result.exit_code == result_no_args.exit_code
+    assert result.output == result_no_args.output
 
 
 def test_accounts(runner):
@@ -40,10 +61,7 @@ def test_accounts(runner):
 
 
 def test_balance(runner):
-    """
-    Test invoking the script 'balance' subcommand, which should also be the
-    default subcomand
-    """
+    """Test invoking the script 'balance' subcommand"""
     result = runner.invoke(
         cli, args=['balance'],
     )
@@ -51,12 +69,6 @@ def test_balance(runner):
     assert result.exit_code == 0
     assert result.output
     assert result.output.startswith('Balance:')
-
-    result_no_args = runner.invoke(cli)
-
-    assert result.exit_code == result_no_args.exit_code
-    assert result.output == result_no_args.output
-    assert result.output.count('\n') == 2
 
 
 def test_transactions(runner):
