@@ -1,3 +1,6 @@
+url: https://pawelad.xyz/monz/
+enforce_ssl: pawelad.xyz/monz/
+
 theme: jekyll-theme-dinky
 
 gems:
