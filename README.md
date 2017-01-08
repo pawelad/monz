@@ -69,6 +69,7 @@ Date:        Nov 18, 3016 11:09 PM
 ```
 
 You can view your linked accounts:
+
 ```
 $ monz accounts    
 Account #1, Bender Rodríguez
