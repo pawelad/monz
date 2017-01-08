@@ -110,7 +110,7 @@ To run tests yourself you need to set environment variables with access token
 before running `tox` inside the repository:
 
 ```shell
-$ pip install requirements/dev.txt
+$ pip install -r requirements/dev.txt
 $ export MONZO_ACCESS_TOKEN='...'
 $ tox
 ```
