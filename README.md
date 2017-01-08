@@ -14,6 +14,7 @@ you should to read the [auth section][pymonzo auth section] there first.
 
 ## Installation
 From PyPI:
+
 ```
 $ pip install monz
 ```
@@ -23,6 +24,7 @@ First, you need to authenticate either via an
 [access token][pymonzo access token] or [OAuth 2][pymonzo oauth2].
 
 Everything else should be pretty straightforward:
+
 ```
 $ monz --help 
 Usage: monz [OPTIONS] COMMAND [ARGS]...
@@ -46,6 +48,7 @@ Commands:
 ## Examples
 The default subcommand is `info` which shows your account balance and its
 latest transaction:
+
 ```
 $ monz  
 Balance:     £17.29
@@ -77,13 +80,15 @@ If you have only one then it will become the default one, but if you have more
 then you have to pass its ID explicitly to other subcommands.
 
 You can also view your current balance:
+
 ```
 $ monz balance
 Balance:     £17.29
 Spent today: £0.00
 ```
 
-Lastly, you can see your latest transactions:
+Finally, you can see your latest transactions:
+
 ```
 $ monz transactions -n 2
 -£50.00 | Robot Arms Apartments (New New York)
@@ -103,6 +108,7 @@ Code coverage is available at [Coveralls][coveralls].
 
 To run tests yourself you need to set environment variables with access token
 before running `tox` inside the repository:
+
 ```shell
 $ pip install requirements/dev.txt
 $ export MONZO_ACCESS_TOKEN='...'
