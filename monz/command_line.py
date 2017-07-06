@@ -97,8 +97,10 @@ def balance(ctx, account_id):
 @click.option('--account-id', '-a', type=str, help="Monzo account ID.")
 @click.option('--num', '-n', type=int, default=3,
               help="Number of transactions to show.")
+@click.option('--csv/--nocsv', default=False,
+              help="Output the transactions as a CSV")
 @click.pass_context
-def transactions(ctx, account_id, num):
+def transactions(ctx, account_id, num, csv):
     """Show Monzo account transactions"""
     try:
         monzo_transactions = ctx.obj.transactions(
@@ -108,6 +110,12 @@ def transactions(ctx, account_id, num):
         )
     except (ValueError, PyMonzoException) as e:
         raise click.ClickException(str(e))
+
+    if csv:
+        click.echo(','.join(['Date',
+                             'Amount',
+                             'Description',
+                             'Category']))
 
     for n, transaction in enumerate(monzo_transactions, start=1):
         # We need a separate request for better merchant info
@@ -130,25 +138,33 @@ def transactions(ctx, account_id, num):
         amount = monzo_amount_to_dec(trans.local_amount)
         local_amount = format_currency(amount, trans.local_currency)
 
-        click.secho(
-            '{0} | {1}'.format(local_amount, description),
-            fg='yellow', bold=True,
-        )
-        click.echo(
-            '{0:<12} {1}'.format('Category:', category)
-        )
-
-        if transaction.notes:  # pragma: no cover
-            click.echo('{0:<12} {1}'.format('Notes:', transaction.notes))
-
-        click.echo(
-            '{0:<12} {1:%b %-d, %Y %-I:%M %p}'.format(
-                'Date:', transaction.created,
+        if csv:
+            click.echo(','.join([
+                '{0:%b %-d, %Y %-I:%M%p}'.format(transaction.created),
+                local_amount,
+                description,
+                category
+            ]))
+        else:
+            click.secho(
+                '{0} | {1}'.format(local_amount, description),
+                fg='yellow', bold=True,
             )
-        )
+            click.echo(
+                '{0:<12} {1}'.format('Category:', category)
+            )
 
-        if n != len(monzo_transactions):
-            click.echo()  # Print a new line between transactions
+            if transaction.notes:  # pragma: no cover
+                click.echo('{0:<12} {1}'.format('Notes:', transaction.notes))
+
+            click.echo(
+                '{0:<12} {1:%b %-d, %Y %-I:%M %p}'.format(
+                    'Date:', transaction.created,
+                )
+            )
+
+            if n != len(monzo_transactions):
+                click.echo()  # Print a new line between transactions
 
 
 if __name__ == '__main__':
