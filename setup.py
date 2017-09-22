@@ -54,7 +54,6 @@ setup(
     long_description=description,
     packages=find_packages(),
     include_package_data=True,
-    scripts=['bin/monz'],
     install_requires=[
         'Babel>=2.3.4',
         'click>=6.6',
@@ -63,6 +62,11 @@ setup(
     ],
     extras_require={
         'testing': ['pytest'],
+    },
+    entry_points={
+        'console_scripts': [
+            'monz=monz.__main__:main',
+        ],
     },
     keywords='monzo cli',
     classifiers=[

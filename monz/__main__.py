@@ -1,13 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Command line entry point for monz
+"""
 from __future__ import unicode_literals
 
-import os
 import sys
 
-# Use the local module
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from monz.__main__ import main # noqa
+from monz.command_line import cli
+
+
+def main(args=None):
+    """Run monz"""
+    cli.main(args, 'monz')
 
 
 if __name__ == '__main__':

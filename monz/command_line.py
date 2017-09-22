@@ -149,7 +149,3 @@ def transactions(ctx, account_id, num):
 
         if n != len(monzo_transactions):
             click.echo()  # Print a new line between transactions
-
-
-if __name__ == '__main__':
-    cli()
