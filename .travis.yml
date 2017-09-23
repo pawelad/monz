@@ -1,3 +1,5 @@
+dist: trusty
+sudo: false
 language: python
 
 python:
@@ -7,13 +9,14 @@ python:
   - "3.6"
 
 install:
-  - pip install -r requirements/dev.txt
   - pip install tox-travis
 
 script:
   - tox
-  - coverage run --source monz -m py.test
-  - coverage report -m
+
+before_install:
+  - pip install coverage coveralls
 
 after_success:
+  - coverage report
   - coveralls
