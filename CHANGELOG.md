@@ -11,6 +11,8 @@ adheres to [Semantic Versioning][semver].
 - Started keeping a changelog.
 
 ### Changed
+- Updated `Babel` to version `2.5.1`, `click` to version `6.7` and `pymonzo` to
+  version `0.10.0`.
 - Moved from `scripts` to `entry_points` in `setup.py`. (#7)
 - Removed CLI capabilities from `monz/command_line.py` so it can't be run
   directly. 
