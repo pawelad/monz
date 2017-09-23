@@ -11,6 +11,8 @@ adheres to [Semantic Versioning][semver].
 - Started keeping a changelog.
 
 ### Changed
+- Reorganized project structure and moved the source code inside `src`
+  directory. ([reasoning][hynek src directory])
 - Updated `Babel` to version `2.5.1`, `click` to version `6.7` and `pymonzo` to
   version `0.10.0`.
 - Moved from `scripts` to `entry_points` in `setup.py`. (#7)
@@ -20,5 +22,6 @@ adheres to [Semantic Versioning][semver].
   Running `python bin/monz` is now equal to `python -m monz`.
 
 
+[hynek src directory]: https://hynek.me/articles/testing-packaging/#src
 [keepachangelog]: http://keepachangelog.com/en/1.0.0/
 [semver]: http://semver.org/spec/v2.0.0.html

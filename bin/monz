@@ -6,8 +6,8 @@ import os
 import sys
 
 # Use the local module
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from monz.__main__ import main # noqa
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+from monz.__main__ import main  # noqa
 
 
 if __name__ == '__main__':
