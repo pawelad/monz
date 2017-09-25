@@ -21,6 +21,9 @@ adheres to [Semantic Versioning][semver].
 - Modified `bin/monz` script to always use local version of `monz`.
   Running `python bin/monz` is now equal to `python -m monz`.
 
+### Fixed
+- Fixed `monzo_amount_to_dec` to work with small numbers. (#3)
+
 
 [hynek src directory]: https://hynek.me/articles/testing-packaging/#src
 [keepachangelog]: http://keepachangelog.com/en/1.0.0/
