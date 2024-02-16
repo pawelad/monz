@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
 """
 monz related utils
 """
-from __future__ import unicode_literals
-
 from decimal import Decimal
 
 

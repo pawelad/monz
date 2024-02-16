@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
 """
 Test 'monz.command_line' file
 """
-from __future__ import unicode_literals
-
 from uuid import uuid4
 
 import pytest

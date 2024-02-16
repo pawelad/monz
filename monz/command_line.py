@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import click
 from babel.numbers import format_currency
 from click_default_group import DefaultGroup

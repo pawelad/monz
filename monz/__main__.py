@@ -1,9 +1,7 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 Command line entry point for monz
 """
-from __future__ import unicode_literals
 
 import sys
 
