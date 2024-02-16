@@ -125,13 +125,13 @@ add functionality and point out any mistakes. Thanks!
 ## Authors
 Developed and maintained by [Paweł Adamczak][pawelad].
 
-Released under [MIT License][license].
+Released under [Mozilla Public License 2.0][license].
 
 
 [coveralls]: https://coveralls.io/github/pawelad/monz
 [github add issue]: https://github.com/pawelad/monz/issues/new
 [github]: https://github.com/pawelad/monz
-[license]: https://github.com/pawelad/monz/blob/master/LICENSE
+[license]: ./LICENSE
 [monzo]: https://monzo.com/
 [monzo api playground]: https://developers.getmondo.co.uk/api/playground
 [pawelad]: https://github.com/pawelad
