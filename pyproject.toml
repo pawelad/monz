@@ -56,3 +56,9 @@ monz = "monz.__main__:main"
 
 [tool.black]
 target-version = ["py38"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra --import-mode=importlib --verbose"
+testpaths = "tests"
+pythonpath = "src"
