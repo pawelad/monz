@@ -1,0 +1,58 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "monz"
+description = "Simple CLI for your Monzo account."
+authors = [{name = "Paweł Adamczak", email = "pawel.ad@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+keywords = ["monzo", "cli"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+]
+dynamic = ["version"]
+
+dependencies = [
+  "Babel",
+  "click",
+  "click-default-group",
+  "pymonzo<1.0",
+]
+
+[project.optional-dependencies]
+tests = [
+  "pytest",
+]
+dev = [
+  "monz[tests]",
+  # Misc
+  "flit",
+  "tox",
+]
+
+[project.urls]
+Homepage = "https://monz.pawelad.dev/"
+Documentation = "https://monz.readthedocs.io/"
+GitHub = "https://github.com/pawelad/monz"
+Issues = "https://github.com/pawelad/monz/issues"
+
+[project.scripts]
+monz = "monz.__main__:main"
+
+[tool.black]
+target-version = ["py38"]

@@ -1,7 +1,0 @@
-include *.md
-include *.txt
-include *.yml
-include LICENSE
-include tox.ini
-recursive-include monz *.py
-recursive-include requirements *.txt
