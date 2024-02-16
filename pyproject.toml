@@ -36,13 +36,14 @@ dependencies = [
 
 [project.optional-dependencies]
 tests = [
+  "coverage[toml]",
   "pytest",
 ]
 dev = [
   "monz[tests]",
   # Misc
   "flit",
-  "tox",
+  "nox",
 ]
 
 [project.urls]
@@ -56,6 +57,17 @@ monz = "monz.__main__:main"
 
 [tool.black]
 target-version = ["py38"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+source = ["src"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+  "if TYPE_CHECKING:",
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
