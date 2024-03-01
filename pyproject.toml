@@ -41,6 +41,13 @@ tests = [
 ]
 dev = [
   "monz[tests]",
+  # Code style
+  "black",
+  "interrogate",
+  "isort",
+  "ruff",
+  # Type checking
+  "mypy",
   # Misc
   "flit",
   "nox",
@@ -69,8 +76,47 @@ exclude_lines = [
   "if TYPE_CHECKING:",
 ]
 
+[tool.interrogate]
+ignore-init-module = true
+ignore-nested-classes = true
+fail-under = 95
+
+[tool.isort]
+profile = "black"
+src_paths = ["src"]
+
+[tool.mypy]
+python_version = "3.8"
+mypy_path = "src"
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra --import-mode=importlib --verbose"
 testpaths = "tests"
 pythonpath = "src"
+
+[tool.ruff]
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+  "A",  # flake8-builtins
+  "ANN",  # flake8-annotations
+  "B",  # flake8-bugbear
+  "C4",  # flake8-comprehensions
+  "C90",  # mccabe
+  "D",  # pydocstyle
+  "DJ",  # flake8-django
+  "E",  # flake8
+  "F",  # flake8
+  "N",  # pep8-naming
+  "PT",  # flake8-pytest-style
+  "S",  # flake8-bandit
+  "SIM",  # flake8-simplify
+  "T20",  # flake8-print
+  "TRY",  # tryceratops
+  "UP",  # pyupgrade
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

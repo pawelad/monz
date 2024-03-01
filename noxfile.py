@@ -31,3 +31,26 @@ def coverage_report(session: nox.Session) -> None:
     session.run("coverage", "combine")
     session.run("coverage", "xml")
     session.run("coverage", "report")
+
+
+@nox.session()
+def code_style_checks(session: nox.Session) -> None:
+    """Check code style."""
+    dirs = session.posargs or DEFAULT_PATHS
+
+    session.install("black", "isort", "ruff", "interrogate")
+
+    session.run("black", "--check", "--diff", *dirs)
+    session.run("isort", "--check", "--diff", *dirs)
+    session.run("ruff", "check", "--diff", *dirs)
+    session.run("interrogate", *dirs)
+
+
+@nox.session()
+def type_checks(session: nox.Session) -> None:
+    """Run type checks."""
+    dirs = session.posargs or DEFAULT_PATHS
+
+    session.install(".[dev]")
+
+    session.run("mypy", *dirs)
