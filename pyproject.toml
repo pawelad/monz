@@ -31,7 +31,9 @@ dependencies = [
   "Babel",
   "click",
   "click-default-group",
-  "pymonzo<1.0",
+  "pymonzo>=2.0.0",
+  "rich",
+  "rich-click",
 ]
 
 [project.optional-dependencies]
@@ -74,6 +76,7 @@ source = ["src"]
 show_missing = true
 exclude_lines = [
   "if TYPE_CHECKING:",
+  'if __name__ == "__main__":'
 ]
 
 [tool.interrogate]
@@ -88,6 +91,13 @@ src_paths = ["src"]
 [tool.mypy]
 python_version = "3.8"
 mypy_path = "src"
+plugins = "pydantic.mypy"
+
+[[tool.mypy.overrides]]
+module = [
+  "click_default_group",
+]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -116,6 +126,17 @@ select = [
   "T20",  # flake8-print
   "TRY",  # tryceratops
   "UP",  # pyupgrade
+]
+ignore = [
+  "A003",  # Class attribute is shadowing a python builtin
+  "ANN101",  # ANN101 Missing type annotation for `self` in method
+  "ANN102",  # ANN102 Missing type annotation for `cls` in classmethod
+  "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+  "D104",  # Missing docstring in public package
+  "D106",  # Missing docstring in public nested class
+  "N818",  #  Exception name should be named with an Error suffix
+  "S101",  # Use of `assert` detected
+  "TRY003",  # Avoid specifying long messages outside the exception class
 ]
 
 [tool.ruff.lint.pydocstyle]
