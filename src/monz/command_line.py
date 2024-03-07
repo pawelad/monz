@@ -1,12 +1,13 @@
 """monz command line interface."""
 
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import List, Optional
 
 import click
 import rich_click
 from pymonzo import MonzoAPI
 from pymonzo.exceptions import PyMonzoError
+from pymonzo.transactions import MonzoTransaction
 from rich.console import Console
 
 from monz.utils import DefaultRichGroup
@@ -194,7 +195,7 @@ def transactions(monzo_api: MonzoAPI, account_id: Optional[str], num: int) -> No
         # By default, the API returns transactions from the last 30 days (I think).
         # Because of that, query the api with an increasing `since` parameter until we
         # get the desired number of transactions.
-        monzo_transactions = []
+        monzo_transactions: List[MonzoTransaction] = []
         n = 0
         while len(monzo_transactions) < num:
             n += 1

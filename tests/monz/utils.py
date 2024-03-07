@@ -9,5 +9,5 @@ def renderable_to_str(obj: RenderableType) -> str:
     """Render passed `RenderableType` to a string."""
     console = Console(file=io.StringIO(), width=120)
     console.print(obj)
-    output = console.file.getvalue()
+    output = console.file.getvalue()  # type: ignore
     return output
