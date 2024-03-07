@@ -39,7 +39,10 @@ dependencies = [
 [project.optional-dependencies]
 tests = [
   "coverage[toml]",
+  "polyfactory",
   "pytest",
+  "pytest-mock",
+  "time-machine",
 ]
 dev = [
   "monz[tests]",

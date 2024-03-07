@@ -152,7 +152,7 @@ def accounts(monzo_api: MonzoAPI) -> None:
     help="Monzo account ID. Can be omitted if user has only one (active) account.",
 )
 @click.pass_obj
-def balance(monzo_api: MonzoAPI, account_id: str) -> None:
+def balance(monzo_api: MonzoAPI, account_id: Optional[str]) -> None:
     """Show Monzo account balance.
 
     You don't need to specify the account ID if you only have one (active) account.
@@ -180,7 +180,7 @@ def balance(monzo_api: MonzoAPI, account_id: str) -> None:
     help="Number of transactions to show.",
 )
 @click.pass_obj
-def transactions(monzo_api: MonzoAPI, account_id: str, num: int) -> None:
+def transactions(monzo_api: MonzoAPI, account_id: Optional[str], num: int) -> None:
     """Show Monzo account transactions.
 
     You don't need to specify the account ID if you only have one (active) account.
