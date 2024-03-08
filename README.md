@@ -114,11 +114,15 @@ Developed and maintained by [Paweł Adamczak][pawelad].
 
 Source code is available at [GitHub][github monz].
 
+If you'd like to contribute, please take a look at the
+[contributing guide].
+
 Released under [Mozilla Public License 2.0][license].
 
 
 [black]: https://github.com/psf/black
 [codecov monz]: https://app.codecov.io/github/pawelad/monz
+[contributing guide]: ./CONTRIBUTING.md
 [github monz]: https://github.com/pawelad/monz
 [license]: ./LICENSE
 [monzo developer portal]:  https://developers.monzo.com/
