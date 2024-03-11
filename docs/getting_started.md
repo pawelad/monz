@@ -1,13 +1,18 @@
-# monz
-[![Package Version](https://img.shields.io/pypi/v/monz)][pypi monz]
-[![Supported Python Versions](https://img.shields.io/pypi/pyversions/monz)][pypi monz]
-[![Read the Docs](https://img.shields.io/readthedocs/monz)][rtfd monz]
-[![Codecov](https://img.shields.io/codecov/c/github/pawelad/monz)][codecov monz]
-[![License](https://img.shields.io/pypi/l/monz)][license]
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
-[![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][rickroll]
+# Getting Started
+Before starting, please take note of these warnings from [Monzo API docs]:
 
-Simple CLI for your Monzo account.
+!!! warning "The Monzo Developer API is not suitable for building public applications"
+
+    You may only connect to your own account or those of a small set of users you
+    explicitly allow. Please read our [blog post](https://monzo.com/blog/2017/05/11/api-update/)
+    for more detail.
+
+!!! warning "Strong Customer Authentication"
+
+    After a user has authenticated, your client can fetch all of their transactions,
+    and after 5 minutes, it can only sync the last 90 days of transactions. If you
+    need the user’s entire transaction history, you should consider fetching and
+    storing it right after authentication.
 
 ## Installation
 Since `monz` is a command line tool, the recommended installation method is via [pipx]:
@@ -23,22 +28,28 @@ Of course, you can just install it directly from [PyPI] (ideally, inside a
 $ python -m pip install monz
 ```
 
-## Quick start
-
-### Authentication
+## Authentication
 Before you can access your Monzo account details through `monz`, you need to
 authenticate it. You can do that with a (temporary) access token (for example, from
 the [Monzo Developer Portal]), or go through a one time OAuth setup that will save
 the token on disk and automatically refresh it when it expires.
 
 To do the latter, you should first create an OAuth client in [Monzo developer tools]
-(with the "Redirect URL" set to `http://localhost:6600/monz`) and run the
-`monz authorize` command with the obtained client ID and client secret.
+(with the "Redirect URL" set to `http://localhost:6600/monz`). If you want the access
+token refresh automatically, you need to set the client as confidential. After that,
+run the `monz authorize` command with the obtained client ID and client secret.
 
-For more information, please take a look at:
-https://monz.pawelad.dev/en/latest/getting_started/#authentication
+This should open a new web browser tab (if it didn't, go to the link from the
+log message) that will let you authorize the OAuth client you just created. If
+everything goes well, you should be redirected to `http://localhost:6600/monz`
+and greeted with `Monzo OAuth authorization complete.` message.
 
-### Usage
+Note that you might need to open your mobile app to allow full access to your account.
+
+That's it! The access token is saved locally at `~/.pymonzo` and - as long as you set
+the OAuth client as confidential - should be refreshed automatically when it expires.
+
+## Usage
 The default subcommand is `info`, which shows your account balance and its
 latest transaction:
 
@@ -109,28 +120,10 @@ Settled:         Feb 6, 3024, 10:49:22 AM
 You can see all available subcommands and options by running `monz --help` (or adding
 `--help` to any subcommand).
 
-## Authors
-Developed and maintained by [Paweł Adamczak][pawelad].
 
-Source code is available at [GitHub][github monz].
-
-If you'd like to contribute, please take a look at the
-[contributing guide].
-
-Released under [Mozilla Public License 2.0][license].
-
-
-[black]: https://github.com/psf/black
-[codecov monz]: https://app.codecov.io/github/pawelad/monz
-[contributing guide]: ./CONTRIBUTING.md
-[github monz]: https://github.com/pawelad/monz
-[license]: ./LICENSE
+[monzo api docs]: https://docs.monzo.com/
 [monzo developer portal]: https://developers.monzo.com/
 [monzo developer tools]: https://developers.monzo.com/
-[pawelad]: https://pawelad.me/
 [pipx]: https://github.com/pypa/pipx
-[pypi monz]: https://pypi.org/project/monz/
 [pypi]: https://pypi.org/
-[rickroll]: https://www.youtube.com/watch?v=I6OXjnBIW-4&t=15s
-[rtfd monz]: https://monz.rtfd.io/
 [virtualenv]: https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/

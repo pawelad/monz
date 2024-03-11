@@ -44,8 +44,17 @@ tests = [
   "pytest-mock",
   "time-machine",
 ]
+docs = [
+  "mkdocs",
+  "mkdocs-gen-files",
+  "mkdocs-include-markdown-plugin",
+  "mkdocs-literate-nav",
+  "mkdocs-material",
+  "mkdocs-section-index",
+  "mkdocstrings[python]",
+]
 dev = [
-  "monz[tests]",
+  "monz[tests,docs]",
   # Code style
   "black",
   "interrogate",

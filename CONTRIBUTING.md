@@ -9,6 +9,7 @@ By participating in this project you agree to abide by its terms.
 ## Tools used
 **Language:** [Python 3.8+][python]  
 **CI:** [GitHub Actions]  
+**Docs:** [mkdocs], [mkdocs-material], [mkdocstrings], [Read The Docs]  
 **Testing:** [pytest], [nox]  
 **Coverage:** [Coverage.py], [Codecov]  
 **Type checks:** [mypy]  
@@ -38,6 +39,8 @@ $ make help
 install                                   Install package in editable mode
 format                                    Format code
 test                                      Run the test suite
+docs-build                                Build docs
+docs-serve                                Serve docs
 build                                     Build package
 publish                                   Publish package
 clean                                     Clean dev artifacts
@@ -53,8 +56,12 @@ help                                      Show help message
 [github new issue]: https://github.com/pawelad/monz/issues/new/choose
 [interrogate]: https://github.com/econchick/interrogate
 [isort]: https://github.com/timothycrosley/isort
+[mkdocs-material]: https://squidfunk.github.io/mkdocs-material/
+[mkdocs]: https://www.mkdocs.org/
+[mkdocstrings]: https://mkdocstrings.github.io/
 [mypy]: https://mypy-lang.org/
 [nox]: https://nox.readthedocs.io/
 [pytest]: https://pytest.org/
 [python]: https://www.python.org/
+[read the docs]: https://readthedocs.com/
 [ruff]: https://docs.astral.sh/ruff

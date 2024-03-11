@@ -1,0 +1,62 @@
+site_name: "monz"
+site_description: "Simple CLI for your Monzo account"
+site_url: "https://monz.pawelad.dev/"
+site_author: "Paweł Adamczak"
+repo_name: "pawelad/monz"
+repo_url: "https://github.com/pawelad/monz"
+
+watch:
+  - "README.md"
+  - "CHANGELOG.md"
+  - "CONTRIBUTING.md"
+  - "LICENSE"
+  - ".github/CODE_OF_CONDUCT.md"
+  - "src/monz"
+
+nav:
+  - Home:
+    - Overview: "index.md"
+    - Getting Started: "getting_started.md"
+    - Changelog: "changelog.md"
+    - License: "license.md"
+  - Development:
+    - Contributing Guide: "contributing.md"
+    - Code of Conduct: "code_of_conduct.md"
+  - Code Reference: "reference/"
+
+theme:
+  name: "material"
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: "default"
+      primary: "deep orange"
+      toggle:
+        icon: "material/lightbulb-outline"
+        name: "Switch to dark mode"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: "slate"
+      primary: "deep orange"
+      toggle:
+        icon: "material/lightbulb"
+        name: "Switch to light mode"
+  features:
+    - "navigation.tabs"
+
+plugins:
+  - "search"
+  - "include-markdown"
+  - "mkdocstrings"
+  - gen-files:
+      scripts:
+      - "docs/gen_ref_pages.py"
+  - literate-nav:
+      nav_file: "SUMMARY.md"
+  - "section-index"
+
+markdown_extensions:
+  - "admonition"
+  - "pymdownx.details"
+  - "pymdownx.magiclink"
+  - "pymdownx.superfences"
+  - pymdownx.tasklist:
+      custom_checkbox: true

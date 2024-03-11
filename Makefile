@@ -17,6 +17,14 @@ format: ## Format code
 test: ## Run the test suite
 	nox
 
+.PHONY: docs-build
+docs-build: ## Build docs
+	mkdocs build
+
+.PHONY: docs-serve
+docs-serve: ## Serve docs
+	mkdocs serve
+
 .PHONY: build
 build: ## Build package
 	python -m flit build
@@ -27,7 +35,7 @@ publish: ## Publish package
 
 .PHONY: clean
 clean: ## Clean dev artifacts
-	rm -rf .coverage coverage.xml .nox/ .pytest_cache/ dist/
+	rm -rf .coverage coverage.xml .mypy_cache/ .nox/ .pytest_cache/ .ruff_cache/ dist/ htmlcov/ site/
 
 # Source: https://www.client9.com/self-documenting-makefiles/
 .PHONY: help
