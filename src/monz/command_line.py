@@ -37,7 +37,7 @@ def cli(ctx: click.Context, access_token: Optional[str]) -> None:
     `monz authorize` command with obtained client ID and client secret.
 
     For more information, please take a look at:
-    https://pymonzo.pawelad.dev/en/latest/getting_started/#authentication
+    https://monz.pawelad.dev/en/latest/getting_started/#authentication
 
     [Monzo Developer Portal]: https://developers.monzo.com/
     """
