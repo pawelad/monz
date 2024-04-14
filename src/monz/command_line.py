@@ -41,13 +41,13 @@ def cli(ctx: click.Context, access_token: Optional[str]) -> None:
 
     [Monzo Developer Portal]: https://developers.monzo.com/
     """
-    try:
-        ctx.obj = MonzoAPI(access_token=access_token)
-    except PyMonzoError as e:
-        raise click.UsageError(str(e)) from e
+    if ctx.invoked_subcommand != "authorize":
+        try:
+            ctx.obj = MonzoAPI(access_token=access_token)
+        except PyMonzoError as e:
+            raise click.UsageError(str(e)) from e
 
 
-# TODO: Test this
 @cli.command()
 @click.option(
     "--client_id",
@@ -74,9 +74,7 @@ def cli(ctx: click.Context, access_token: Optional[str]) -> None:
     default="http://localhost:6600/monz",
     help="Redirect URL specified in OAuth client.",
 )
-@click.pass_obj
 def authorize(
-    monzo_api: MonzoAPI,
     client_id: str,
     client_secret: str,
     save: bool,
@@ -93,7 +91,7 @@ def authorize(
 
     [Monzo Developer Portal]: https://developers.monzo.com/
     """
-    token = monzo_api.authorize(
+    token = MonzoAPI.authorize(
         client_id=client_id,
         client_secret=client_secret,
         save_to_disk=save,
