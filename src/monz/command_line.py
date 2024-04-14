@@ -29,8 +29,9 @@ def cli(ctx: click.Context, access_token: Optional[str]) -> None:
     """Simple command line interface for quickly accessing your Monzo account info.
 
     To use it, you need to first authenticate the app. You can do that with a temporary
-    access token from the [Monzo Developer Portal], or go through a one time OAuth setup
-    that will save the token on disk and automatically refresh it when it expires.
+    access token from the [Monzo Developer Portal](https://developers.monzo.com/),
+    or go through a one time OAuth setup that will save the token on disk and
+    automatically refresh it when it expires.
 
     To do that, you should first create an OAuth client in Monzo developer tools
     (with the "Redirect URL" set to `http://localhost:6600/monz`) and run the
@@ -38,8 +39,6 @@ def cli(ctx: click.Context, access_token: Optional[str]) -> None:
 
     For more information, please take a look at:
     https://monz.pawelad.dev/en/latest/getting_started/#authentication
-
-    [Monzo Developer Portal]: https://developers.monzo.com/
     """
     if ctx.invoked_subcommand != "authorize":
         try:
@@ -53,15 +52,16 @@ def cli(ctx: click.Context, access_token: Optional[str]) -> None:
     "--client_id",
     type=str,
     required=True,
-    prompt=True,
-    help="OAuth client ID.",
+    prompt="Monzo OAuth client ID",
+    help="Monzo OAuth client ID.",
 )
 @click.option(
     "--client_secret",
     type=str,
     required=True,
-    prompt=True,
-    help="OAuth client secret.",
+    prompt="Monzo OAuth client secret",
+    hide_input=True,
+    help="Monzo OAuth client secret.",
 )
 @click.option(
     "--save/--no_save",
@@ -82,14 +82,13 @@ def authorize(
 ) -> None:
     """Authorize `monz` as an OAuth client.
 
-    To get the client ID and secret, create an OAuth client in [Monzo developer tools]
-    (with the "Redirect URL" set to `http://localhost:6600/monz`), run the
-    `monz authorize` command and follow its steps. By default, it will save the
-    obtained token on disk, so it can be automatically refreshed when it expires.
+    To get the client ID and secret, create an OAuth client in
+    [Monzo developer tools](https://developers.monzo.com/) (with the "Redirect URL"
+    set to `http://localhost:6600/monz`), run the `monz authorize` command and follow
+    its steps. By default, it will save the obtained token on disk, so it can be
+    automatically refreshed when it expires.
 
     Alternatively, you can pass `--no_save` option to just obtain the token.
-
-    [Monzo Developer Portal]: https://developers.monzo.com/
     """
     token = MonzoAPI.authorize(
         client_id=client_id,
