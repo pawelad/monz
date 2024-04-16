@@ -9,6 +9,7 @@ from pytest_mock import MockerFixture
 from .factories import (
     MonzoAccountFactory,
     MonzoBalanceFactory,
+    MonzoPotFactory,
     MonzoTransactionFactory,
     MonzoWhoAmIFactory,
 )
@@ -27,6 +28,8 @@ def mocked_monzo_api(mocker: MockerFixture) -> MagicMock:
     account1 = MonzoAccountFactory.build()
     account2 = MonzoAccountFactory.build()
     balance = MonzoBalanceFactory.build()
+    pot1 = MonzoPotFactory.build(deleted=False)
+    pot2 = MonzoPotFactory.build(deleted=False)
     transaction1 = MonzoTransactionFactory.build()
     transaction2 = MonzoTransactionFactory.build()
     transaction3 = MonzoTransactionFactory.build()
@@ -36,6 +39,7 @@ def mocked_monzo_api(mocker: MockerFixture) -> MagicMock:
     monzo_api = mocker.MagicMock()
     monzo_api.accounts.list.return_value = [account1, account2]
     monzo_api.balance.get.return_value = balance
+    monzo_api.pots.list.return_value = [pot1, pot2]
     monzo_api.transactions.list.return_value = [
         transaction1,
         transaction2,

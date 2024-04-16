@@ -130,6 +130,34 @@ def test_balance(
     # TODO: Test `--account_id` option
 
 
+def test_pots(
+    mocker: MockerFixture,
+    cli_runner: CliRunner,
+    mocked_monzo_api: MagicMock,
+) -> None:
+    """Outputs user accounts."""
+    mocked_MonzoAPI = mocker.patch(  # noqa
+        "monz.command_line.MonzoAPI",
+        autospec=True,
+        return_value=mocked_monzo_api,
+    )
+
+    result = cli_runner.invoke(cli, args=["pots"])
+
+    mocked_MonzoAPI.assert_called_once_with(access_token=None)
+    mocked_monzo_api.pots.list.assert_called_once_with(account_id=None)
+
+    assert result.exit_code == 0
+    assert result.output
+
+    pots = mocked_monzo_api.pots.list()
+    for pot in pots:
+        assert renderable_to_str(pot) in result.output
+
+    # TODO: Test `--account_id` option
+    # TODO: Test `--show_deleted` option
+
+
 def test_transactions(
     mocker: MockerFixture,
     time_machine: TimeMachineFixture,

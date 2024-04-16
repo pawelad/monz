@@ -19,6 +19,14 @@ help_config = rich_click.RichHelpConfiguration(
 
 rich_console = Console()
 
+# Options used in multiple places
+option_account_id = click.option(
+    "--account_id",
+    "-a",
+    type=str,
+    help="Monzo account ID. Can be omitted if user has only one (active) account.",
+)
+
 
 @click.group(cls=DefaultRichGroup, default="info", default_if_no_args=True)
 @rich_click.rich_config(help_config=help_config)
@@ -143,12 +151,7 @@ def accounts(monzo_api: MonzoAPI) -> None:
 
 
 @cli.command()
-@click.option(
-    "--account_id",
-    "-a",
-    type=str,
-    help="Monzo account ID. Can be omitted if user has only one (active) account.",
-)
+@option_account_id
 @click.pass_obj
 def balance(monzo_api: MonzoAPI, account_id: Optional[str]) -> None:
     """Show Monzo account balance.
@@ -164,12 +167,33 @@ def balance(monzo_api: MonzoAPI, account_id: Optional[str]) -> None:
 
 
 @cli.command()
+@option_account_id
 @click.option(
-    "--account_id",
-    "-a",
-    type=str,
-    help="Monzo account ID. Can be omitted if user has only one (active) account.",
+    "--show_deleted/--hide_deleted",
+    default=False,
+    help="Whether to show deleted pots.",
 )
+@click.pass_obj
+def pots(monzo_api: MonzoAPI, account_id: Optional[str], show_deleted: bool) -> None:
+    """Show Monzo pots."""
+    try:
+        monzo_pots = monzo_api.pots.list(account_id=account_id)
+    except PyMonzoError as e:
+        raise click.UsageError(str(e)) from e
+
+    if not show_deleted:
+        monzo_pots = [pot for pot in monzo_pots if not pot.deleted]
+
+    for n, pot in enumerate(monzo_pots, start=1):
+        rich_console.print(pot)
+
+        # Print a new line between accounts
+        if n != len(monzo_pots):
+            rich_console.print()
+
+
+@cli.command()
+@option_account_id
 @click.option(
     "--num",
     "-n",
@@ -208,5 +232,6 @@ def transactions(monzo_api: MonzoAPI, account_id: Optional[str], num: int) -> No
     for n, transaction in enumerate(list(reversed(monzo_transactions))[:num], start=1):
         rich_console.print(transaction)
 
+        # Print a new line between transactions
         if n != len(monzo_transactions):
-            click.echo()  # Print a new line between transactions
+            rich_console.print()
