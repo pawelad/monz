@@ -31,7 +31,7 @@ dependencies = [
   "Babel",
   "click",
   "click-default-group",
-  "pymonzo>=2.2.0",
+  "pymonzo>=2.2.1",
   "rich",
   "rich-click",
 ]
