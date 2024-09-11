@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## Unreleased
 
+### Changed
+- Upgrade `pymonzo` to v2.2.0.
+
 ## [v1.0.0](https://github.com/pawelad/monz/releases/tag/v1.0.0) - 2024-04-16
 ### Changed
 - Project refresh.
