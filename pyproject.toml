@@ -153,3 +153,6 @@ ignore = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = true
