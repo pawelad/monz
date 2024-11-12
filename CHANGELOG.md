@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## Unreleased
 
+### Added
+- Add `py.typed` file.
+
 ## [v1.1.1](https://github.com/pawelad/monz/releases/tag/v1.1.1) - 2024-09-11
 ### Changed
 - Upgrade `pymonzo` to v2.2.1.
