@@ -5,9 +5,19 @@
 [![Codecov](https://img.shields.io/codecov/c/github/pawelad/monz)][codecov monz]
 [![License](https://img.shields.io/pypi/l/monz)][license]
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
-[![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][rickroll]
+[![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][py.typed]
 
-Simple CLI for your Monzo account.
+Simple CLI for quickly accessing your [Monzo] account.
+
+- Works on Python 3.8+
+- Sensible defaults (don't specify account / pot ID if you only have one active)
+- Easy authentication (with automatic access token refreshing)
+- Pretty printing (via [Rich])
+- Built on top of [pawelad/pymonzo][github pymonzo]
+
+---
+
+This project is not officially affiliated with [Monzo].
 
 ## Installation
 Since `monz` is a command line tool, the recommended installation method is via [pipx]:
@@ -124,13 +134,16 @@ Released under [Mozilla Public License 2.0][license].
 [codecov monz]: https://app.codecov.io/github/pawelad/monz
 [contributing guide]: ./CONTRIBUTING.md
 [github monz]: https://github.com/pawelad/monz
+[github pymonzo]: https://github.com/pawelad/pymonzo
 [license]: ./LICENSE
 [monzo developer portal]: https://developers.monzo.com/
 [monzo developer tools]: https://developers.monzo.com/
+[monzo]: https://monzo.com/
 [pawelad]: https://pawelad.me/
 [pipx]: https://github.com/pypa/pipx
+[py.typed]: https://mortifex.xyz/py-typed
 [pypi monz]: https://pypi.org/project/monz/
 [pypi]: https://pypi.org/
-[rickroll]: https://www.youtube.com/watch?v=I6OXjnBIW-4&t=15s
+[rich]: https://github.com/Textualize/rich
 [rtfd monz]: https://monz.rtfd.io/
 [virtualenv]: https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
