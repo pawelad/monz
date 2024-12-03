@@ -9,7 +9,7 @@
 
 Simple CLI for quickly accessing your [Monzo] account.
 
-- Works on Python 3.8+
+- Works on Python 3.9+
 - Sensible defaults (don't specify account / pot ID if you only have one active)
 - Easy authentication (with automatic access token refreshing)
 - Pretty printing (via [Rich])
